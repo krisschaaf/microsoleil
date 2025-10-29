@@ -1,46 +1,45 @@
-# Proof of Concept (PoC) — Offline-First Architektur mit React Native, PowerSync (self-hosted) & Supabase
+# Proof of Concept (PoC) — Offline-First Architecture with React Native, PowerSync (self-hosted) & Supabase
 
-## 🧩 Ziel
+## 🧩 Goal
 
-Dieser Proof of Concept (PoC) validiert die **Offline-First Architektur** mit folgenden Komponenten:
+This Proof of Concept (PoC) validates the **Offline-First Architecture** with the following components:
 
-- **React Native** als mobile Client-App  
-- **Lokale Datenbank** (SQLite oder WatermelonDB) für Offline-Funktionalität  
-- **Self-Hosted PowerSync Server** als Synchronisations-Gateway  
-- **Self-Hosted Supabase** (PostgreSQL, Auth, Realtime, PostgREST) als zentrales Backend  
+- **React Native** as the mobile client app  
+- **Local Database** (SQLite or WatermelonDB) for offline functionality  
+- **Self-Hosted PowerSync Server** as the synchronization gateway  
+- **Self-Hosted Supabase** (PostgreSQL, Auth, Realtime, PostgREST) as the central backend  
 
-Der PoC soll den vollständigen **End-to-End-Datenfluss** demonstrieren – von Offline-Aktivität über Synchronisation bis zur serverseitigen Validierung und Realtime-Kommunikation.
-
----
-
-## 🧠 Zielsetzung
-
-1. Verifizieren, dass Offline-Operationen (Erstellen, Bearbeiten, Löschen) lokal persistiert werden.  
-2. Validieren, dass der **PowerSync Server** Daten sicher mit Supabase synchronisiert.  
-3. Überprüfen, dass **Supabase Auth + RLS** korrekt greifen, sobald Daten im Backend ankommen.  
-4. Sicherstellen, dass **Realtime-Events** über PowerSync korrekt an Clients verteilt werden.  
-5. Erste Messungen zu Performance, Latenz und Konfliktverhalten erfassen.
+The PoC aims to demonstrate the complete **end-to-end data flow** – from offline activity, through synchronization, to server-side validation and real-time communication.
 
 ---
 
-## ⚙️ Komponentenübersicht
+## 🧠 Objectives
 
-| Komponente | Typ | Aufgabe |
-|-------------|-----|---------|
-| **React Native App** | Client | UI, lokale Datenhaltung, Trigger für Sync |
-| **Lokale DB (SQLite/WatermelonDB)** | Client | Offline-Persistenz |
-| **PowerSync Client SDK** | Client | Queue-Management, Operation Tracking |
-| **PowerSync Server** | Middleware (self-hosted) | Synchronisationslogik, Konfliktlösung, Proxy zu Supabase |
-| **Supabase Auth (GoTrue)** | Backend | Authentifizierung, JWT-Verwaltung |
-| **Supabase PostgREST API** | Backend | RESTful Zugriff auf PostgreSQL |
-| **PostgreSQL + RLS** | Backend | Zentrale Datenspeicherung & Zugriffsschutz |
-| **Supabase Realtime** | Backend | Event-basierte Kommunikation zwischen Clients |
+1. Verify that offline operations (create, edit, delete) are locally persisted.  
+2. Validate that the **PowerSync Server** securely syncs data with Supabase.  
+3. Check that **Supabase Auth + RLS** are correctly applied when data reaches the backend.  
+4. Ensure that **Realtime Events** are correctly distributed to clients via PowerSync.  
+5. Collect initial performance, latency, and conflict resolution measurements.
 
+---
 
-## 🧪 Testziele
+## ⚙️ Component Overview
 
-- Erstellen, Bearbeiten und Löschen von Datensätzen im Offline-Modus  
-- Automatische Synchronisation nach Wiederherstellung der Verbindung  
-- Prüfung der Authentifizierung via Supabase Auth  
-- Validierung von RLS-Policies beim Server-Sync  
-- (Empfang von Änderungen anderer Clients über Supabase Realtime)
+| Component                        | Type                  | Purpose                                      |
+|-----------------------------------|-----------------------|----------------------------------------------|
+| **React Native App**              | Client                | UI, local data storage, sync triggers        |
+| **Local DB (SQLite/WatermelonDB)**| Client                | Offline persistence                          |
+| **PowerSync Client SDK**          | Client                | Queue management, operation tracking         |
+| **PowerSync Server**              | Middleware (self-hosted)| Synchronization logic, conflict resolution, proxy to Supabase |
+| **Supabase Auth (GoTrue)**        | Backend               | Authentication, JWT management               |
+| **Supabase PostgREST API**        | Backend               | RESTful access to PostgreSQL                 |
+| **PostgreSQL + RLS**              | Backend               | Central data storage & access control        |
+| **Supabase Realtime**             | Backend               | Event-based communication between clients    |
+
+## 🧪 Test Objectives
+
+- Create, edit, and delete records in offline mode  
+- Automatic synchronization upon restoring the connection  
+- Authentication check via Supabase Auth  
+- Validation of RLS policies during server sync  
+- (Receiving changes from other clients via Supabase Realtime)

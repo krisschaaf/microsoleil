@@ -1,4 +1,4 @@
-## 🧩 Proof-of-Concept Architektur
+## 🧩 Proof-of-Concept architecture
 
 ```mermaid
 flowchart LR
