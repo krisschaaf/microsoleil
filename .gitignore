@@ -1,3 +1,4 @@
 .DS_Store
 .vscode
 .expo
+/Users/krisschaaf/IdeaProjects/microsoleil/proof_of_concept/supabase-service/volumes/db/data/pg_logical/snapshots
