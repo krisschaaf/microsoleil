@@ -1,7 +1,7 @@
 replication:
   connections:
     - type: postgresql
-      uri: postgresql://postgres:postgres@postgres:5432/postgres
+      uri: postgresql://postgres:your-super-secret-and-long-postgres-password@db:5432/postgres
 
       # SSL settings
       sslmode: disable # 'verify-full' (default) or 'verify-ca' or 'disable'
@@ -28,12 +28,13 @@ sync_rules:
 client_auth:
   # Enable this if using Supabase Auth
   supabase: true
+  supabase_jwt_secret: your-super-secret-jwt-token-with-at-least-32-characters-long
 
   # JWKS URIs can be specified here.
-  jwks_uri: [TODO]
+  # jwks_uri: [http://localhost:3000]
 
   # JWKS audience
-  audience: ['powersync-dev', 'powersync']
+  # audience: ['powersync-dev', 'powersync']
 
   # Settings for telemetry reporting
   # See https://docs.powersync.com/self-hosting/telemetry

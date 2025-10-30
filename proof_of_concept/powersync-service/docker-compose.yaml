@@ -1,3 +1,7 @@
+networks:
+  supabase_network:
+    external: true
+
 services:
   powersync:
     restart: unless-stopped
@@ -10,6 +14,9 @@ services:
     command: ["start", "-r", "unified"]
     volumes:
       - ./config/config.yaml:/config/config.yaml
+      - ./config/sync_rules.yaml:/config/sync_rules.yaml
+    networks:
+      - supabase_network
     environment:
       POWERSYNC_CONFIG_PATH: /config/config.yaml
     ports:
@@ -22,14 +29,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=postgres
-      - PGPORT=5432
+      - PGPORT=55432   # Change internal PostgreSQL port
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/
     ports:
-      - "5432:5432"
-    command: ["postgres", "-c", "wal_level=logical"]
+      - "55432:55432"  # Host:Container port mapping
+    command: ["postgres", "-c", "wal_level=logical", "-p", "55432"]  # Start on custom port
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres -p 55432"]
       interval: 5s
       timeout: 5s
       retries: 5
