@@ -1,4 +1,4 @@
-# ADR-002: Tech Stack Decision – React Native
+# ADR-002: Tech Decision – React Native
 
 **Date:** 2025-10-27
 **Related ADRs:** [ADR-001: Offline-First Architecture](./adr-001-offline-first-decision.md)
