@@ -3,6 +3,7 @@
 ## Overview  
 MicroSoleil’s app enables data collection in rural environments where connectivity is limited and devices are often basic. The system must work reliably offline, sync gracefully when a connection becomes available, and present information in ways that can be understood by users with diverse literacy levels.  
 At the same time the platform must give administrators the ability to review and analyze the collected information, maintain data security, and support future extensions such as market access or data-sharing modules.
+
 This project describes how farmers, focal points, and MicroSoleil staff collect, manage, review, and use agricultural data to support better decisions and improve farming outcomes.
 
 ## Core Capabilities  
