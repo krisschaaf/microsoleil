@@ -1,5 +1,21 @@
 import { AppState } from "react-native";
 import { supabase } from "../lib/supabase";
+import { jwtDecode } from "jwt-decode";
+import { Session } from "@supabase/supabase-js";
+
+type MyAuthToken = {
+  aud: string
+  exp: number
+  iat: number
+  iss: string
+  sub: string
+
+  email?: string
+  email_verified?: boolean
+  user_role?: string
+  user_metadata?: any
+}
+
 
 const AuthService = {
     activate: () => {
@@ -25,6 +41,9 @@ const AuthService = {
     signOut: () => {
         supabase.auth.signOut();
     },
+
+    getUserRoles: (session: Session) => jwtDecode<MyAuthToken>(session.access_token).user_role,
+        
 }
 
 export default AuthService;
