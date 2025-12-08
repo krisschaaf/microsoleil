@@ -11,6 +11,26 @@ import CropsList from './components/Crops/CropsList';
 
 const Stack = createNativeStackNavigator();
 
+function AppStack( {session}: {session: Session} ) {
+  return (
+    <Stack.Navigator initialRouteName='Home'>
+      <Stack.Screen name="Home">
+        {() => <HomeScreen session={session} />}
+      </Stack.Screen>
+      <Stack.Screen name="CreateCrops" component={CreateCropForm} />
+      <Stack.Screen name="ListCrops" component={CropsList} />
+    </Stack.Navigator>
+  )
+}
+
+function AuthStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Auth" component={Auth} />
+    </Stack.Navigator>
+  )
+}
+
 export default function App() {
   const [session, setSession] = useState<Session | null>(null)
 
@@ -27,18 +47,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        
-        {session && session.user ?
-          <Stack.Screen name="Home">
-            {() => <HomeScreen session={session} />}
-          </Stack.Screen>
-          : <Stack.Screen name="Auth" component={Auth} />
-        }
-
-        <Stack.Screen name="CreateCrops" component={CreateCropForm} />
-        <Stack.Screen name="ListCrops" component={CropsList} />
-      </Stack.Navigator>
+      {session && session.user ? <AppStack session={session} /> : <AuthStack />}
     </NavigationContainer>
   );
 }

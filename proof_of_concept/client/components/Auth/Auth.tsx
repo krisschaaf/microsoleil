@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, TextInput } from 'react-native'
+import { Alert, Text, View, TextInput } from 'react-native'
 import { Button } from 'react-native'
 import AuthService from '../../services/AuthService'
 
@@ -35,45 +35,44 @@ export default function Auth() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
-        <TextInput
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          placeholder="email@address.com"
-          autoCapitalize={'none'}
-        />
-      </View>
-      <View style={styles.verticallySpaced}>
-        <TextInput
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          secureTextEntry={true}
-          placeholder="Password"
-          autoCapitalize={'none'}
-        />
-      </View>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
+    <View style={{ padding: 16 }}>
+      <Text style={{ fontSize: 18, marginBottom: 8 }}>Email</Text>
+      <TextInput
+        style={{
+          marginBottom: 12,
+          fontSize: 16,
+          borderWidth: 1,
+          borderColor: '#ccc',
+          padding: 8,
+          borderRadius: 6,
+        }}
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+        placeholder="email@address.com"
+        autoCapitalize={'none'}
+      />
+
+      <Text style={{ fontSize: 18, marginBottom: 8 }}>Password</Text>
+      <TextInput
+        style={{
+          marginBottom: 12,
+          fontSize: 16,
+          borderWidth: 1,
+          borderColor: '#ccc',
+          padding: 8,
+          borderRadius: 6,
+        }}
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+        secureTextEntry={true}
+        placeholder="Password"
+        autoCapitalize={'none'}
+      />
+
+      <View style={{ gap: 12 }}>
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
-      </View>
-      <View style={styles.verticallySpaced}>
         <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
       </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 12,
-  },
-  verticallySpaced: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignSelf: 'stretch',
-  },
-  mt20: {
-    marginTop: 20,
-  },
-})
