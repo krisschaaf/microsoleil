@@ -42,7 +42,8 @@ const AuthService = {
         supabase.auth.signOut();
     },
 
-    getUserRoles: (session: Session) => jwtDecode<MyAuthToken>(session.access_token).user_role,
+    getUserRole: (session: Session) => jwtDecode<MyAuthToken>(session.access_token).user_role,
+    getUserID: (session: Session) => jwtDecode<MyAuthToken>(session.access_token).sub,
         
 }
 

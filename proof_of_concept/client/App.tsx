@@ -1,12 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { DetailsScreen } from './components/DetailsScreen';
 import { HomeScreen } from './components/Home/HomeScreen';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from './lib/supabase';
 import Auth from './components/Auth/Auth';
 import AuthService from './services/AuthService';
+import CreateCropForm from './components/Crops/CreateCropForm';
+import CropsList from './components/Crops/CropsList';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +36,8 @@ export default function App() {
           : <Stack.Screen name="Auth" component={Auth} />
         }
 
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="CreateCrops" component={CreateCropForm} />
+        <Stack.Screen name="ListCrops" component={CropsList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
